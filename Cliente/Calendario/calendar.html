@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>SCalend - Calendario digital</title>
+
+	<!-- Include CSS for JQuery Frontier Calendar plugin (Required for calendar plugin) -->
+	<link rel="stylesheet" type="text/css" href="css/frontierCalendar/jquery-frontier-cal-1.3.2.css" />
+
+	<!-- Include CSS for color picker plugin (Not required for calendar plugin. Used for example.) -->
+	<link rel="stylesheet" type="text/css" href="css/colorpicker/colorpicker.css" />
+
+	<!-- Include CSS for JQuery UI (Required for calendar plugin.) -->
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui/smoothness/jquery-ui-1.8.1.custom.css" />
+
+	<link rel="stylesheet" type="text/css" href="css/estilos/estilos.css" />
+
+	<!--
+Include JQuery Core (Required for calendar plugin)
+** This is our IE fix version which enables drag-and-drop to work correctly in IE. See README file in js/jquery-core folder. **
+-->
+	<script type="text/javascript" src="js/jquery-core/jquery-1.4.2-ie-fix.min.js"></script>
+
+	<!-- Include JQuery UI (Required for calendar plugin.) -->
+	<script type="text/javascript" src="js/jquery-ui/smoothness/jquery-ui-1.8.1.custom.min.js"></script>
+
+	<!-- Include color picker plugin (Not required for calendar plugin. Used for example.) -->
+	<script type="text/javascript" src="js/colorpicker/colorpicker.js"></script>
+
+	<!-- Include jquery tooltip plugin (Not required for calendar plugin. Used for example.) -->
+	<script type="text/javascript" src="js/jquery-qtip-1.0.0-rc3140944/jquery.qtip-1.0.js"></script>
+	<script type="text/javascript" src="js/scripts/script.js"></script>
+
+
+	<!--
+	(Required for plugin)
+	Dependancies for JQuery Frontier Calendar plugin.
+    ** THESE MUST BE INCLUDED BEFORE THE FRONTIER CALENDAR PLUGIN. **
+-->
+	<script type="text/javascript" src="js/lib/jshashtable-2.1.js"></script>
+
+	<!-- Include JQuery Frontier Calendar plugin -->
+	<script type="text/javascript" src="js/frontierCalendar/jquery-frontier-cal-1.3.2.min.js"></script>
+
+</head>
+
+<body style="background-color: #000000;">
+
+
+
+	<h1 style="font-size: 30px; font-weight: bold; color: white;"> SCalend.</h1>
+
+	<div id="tabs">
+		<ul>
+
+			<li><a href="#tabs-2">Calendario digital</a></li>
+
+		</ul>
+
+		<div id="tabs-2">
+
+			<div id="example" style="margin: auto; width:80%;">
+				<h4>Agregar las tareas a su fecha de culminaci&oacute;n.</h4>
+
+
+				<div id="toolbar" class="ui-widget-header ui-corner-all" style="padding:3px; vertical-align: middle; white-space:nowrap; overflow: hidden;">
+					<button id="BtnPreviousMonth">Anterior</button><i class="fas fa-angle-right"></i>
+
+
+					<button id="BtnNextMonth">Siguiente</button> &nbsp;&nbsp;&nbsp; Fecha: <input type="text" id="dateSelect" size="20" /> &nbsp;&nbsp;&nbsp;
+
+
+
+				</div>
+
+				<br>
+
+				<!--
+		You can use pixel widths or percentages. Calendar will auto resize all sub elements.
+		Height will be calculated by aspect ratio. Basically all day cells will be as tall
+		as they are wide.
+		-->
+				<div id="mycal"></div>
+
+			</div>
+
+			<!-- debugging-->
+			<div id="calDebug"></div>
+
+
+			<div id="add-event-form" title="Agregar Nueva Tarea">
+
+				<form enctype="multipart/form-data" id="formulario_form_data">
+					<fieldset>
+						<label for="name"></label>
+						<input type="text" placeholder="T&iacute;tulo*" name="what" id="titulo" class="text ui-widget-content ui-corner-all" style="margin-bottom:12px; width:95%; padding: .4em;" />
+						<table style="width:100%; padding:5px;">
+
+							<tr>
+								<textarea id="descripcion" placeholder="Descripci&oacute;n*" style="margin-bottom:12px; width:95%;  padding: .4em;"></textarea>
+							</tr>
+
+							<tr>
+
+
+
+								<textarea id="logros" placeholder="Logros...." style="margin-bottom:12px; width:51%;  padding: .4em;"></textarea>
+
+
+							</tr>
+
+							<input type="file" lang="es" name="" id="archivo" style="margin-bottom:10px">
+
+							<tr>
+
+								<label>Grado</label>
+								<select id="grado" class="text ui-widget-content ui-corner-all" style="margin-bottom:12px; width:100%; padding: .4em;">
+
+
+											</select>
+
+
+
+							</tr>
+
+							<tr>
+
+								<label>Materia</label>
+								<select id="materia" class="text ui-widget-content ui-corner-all" style="margin-bottom:12px; width:100%; padding: .4em;">
+
+										</select>
+
+
+							</tr>
+
+							<tr>
+								<label for="">Tema</label>
+								<select id="tema" class="text ui-widget-content ui-corner-all" style="margin-bottom:12px; width:100%; padding: .4em;">
+
+										</select>
+							</tr>
+
+							<tr>
+
+								<td>
+									<label>Fecha Culminaci&oacute;n </label>
+									<input type="text" disabled name="startDate" id="startDate" value="" class="text ui-widget-content ui-corner-all" style="margin-bottom:12px; width:95%; padding: .4em;" />
+								</td>
+								<td>&nbsp;</td>
+								<td>
+									<label>Hora</label>
+									<select id="startHour" class="text ui-widget-content ui-corner-all" style="margin-bottom:12px; width:95%; padding: .4em;">
+								<option value="24" SELECTED>24:00</option>
+								<option value="23">23:00</option>
+								<option value="22">22:00</option>
+								<option value="21">21:00</option>
+								<option value="20">20:00</option>
+								<option value="19">19:00</option>
+								<option value="18">18:00</option>
+								<option value="17">17:00</option>
+								<option value="16">16:00</option>
+								<option value="15">15:00</option>
+								<option value="14">14:00</option>
+								<option value="13">13:00</option>
+								<option value="12">12:00</option>
+								<option value="11">11:00</option>
+								<option value="10">10:00</option>
+								<option value="9">09:00</option>
+								<option value="8">08:00</option>
+								<option value="7">07:00</option>
+								<option value="6">06:00</option>
+								<option value="5">05:00</option>
+								<option value="4">04:00</option>
+								<option value="3">03:00</option>
+								<option value="2">02:00</option>
+								<option value="1">01:00</option>
+							</select>
+									<td>
+										<select id="startMin" class="text ui-widget-content ui-corner-all" style="margin-bottom:12px; width:95%; padding: .4em;display:none">
+								<option value="00" SELECTED>00</option>
+
+										</select>
+
+										<td>
+											<td>
+
+												<select id="startMeridiem" class="text ui-widget-content ui-corner-all" style="margin-bottom:12px; width:95%; padding: .4em;display:none">
+													<option value="AM" SELECTED>AM</option>
+
+											</select>
+											</td>
+
+							</tr>
+
+
+
+						</table>
+						<table>
+							<tr>
+								<td>
+									<label>Color Fondo </label>
+								</td>
+								<td>
+									<div id="colorSelectorBackground">
+										<div style="background-color: #333333; width:30px; height:30px; border: 2px solid #000000;"></div>
+									</div>
+									<input type="hidden" id="colorBackground" value="#333333">
+								</td>
+								<td>&nbsp;&nbsp;&nbsp;</td>
+								<td>
+									<label>Color Texto </label>
+								</td>
+								<td>
+									<div id="colorSelectorForeground">
+										<div style="background-color: #ffffff; width:30px; height:30px; border: 2px solid #000000;"></div>
+									</div>
+									<input type="hidden" id="colorForeground" value="#ffffff">
+								</td>
+							</tr>
+						</table>
+					</fieldset>
+				</form>
+
+			</div>
+
+			<div id="display-event-form" title="Item de la agenda">
+
+			</div>
+
+			<p>&nbsp;</p>
+
+		</div>
+		<!-- end example tab -->
+
+	</div>
+	<!-- end tabs -->
+
+	<p>&nbsp;</p>
+
+
+</body>
+
+</html>
