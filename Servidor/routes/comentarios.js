@@ -34,4 +34,33 @@ router.get('/:tarea', function(req, res, next) {
 
 });
 
+
+router.post('/crear', function(req, res, next){
+
+
+  const {
+    comentario,
+    id_estudiante,
+    id_tarea
+  } = req.body;
+
+
+  model.Comentario.create({
+    comentario:comentario,
+    id_estudiante:id_estudiante,
+    id_tarea:id_tarea,
+  })
+  .then(comentario => res.status(201).json({
+      error : false,
+      data : tarea,
+      message: 'Nueva comentario creado.!'
+  }))
+  .catch(error => res.json({
+      error : true,
+      data : [],
+      error : error
+
+  }));
+
+});
 module.exports = router;

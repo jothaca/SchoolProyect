@@ -50,11 +50,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.use('/estudiantes/:id',estudiantesRouter);
 
-app.use('/estudiantes',estudiantesRouter);
-app.use('/estudiantes/iniciarSesion/:id',estudiantesRouter);
-app.use('/estudiantes/getSesion/',estudiantesRouter);
 
 
 app.use('/', indexRouter);
@@ -73,6 +69,13 @@ app.use('/tema_materias', temas_materiasRouter);
 
 app.use('/comentarios',comentariosRouter);
 app.use('/comentarios/:tarea',comentariosRouter);
+
+
+app.use('/estudiantes',estudiantesRouter);
+app.use('/estudiantes/iniciarSesion/:id',estudiantesRouter);
+app.use('/estudiantes/getSesion/',estudiantesRouter);
+app.use('/estudiantes/buscar/:id',estudiantesRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

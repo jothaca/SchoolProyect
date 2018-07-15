@@ -18,10 +18,10 @@ router.get('/', function(req, res, next) {
     }));
 
 });
-router.get('/:id_curso', function(req, res, next) {
+router.get('/buscar/:id', function(req, res, next) {
     const id = req.params.id;
-
-  model.Estudiante.findAll({where: {id_curso:id}})
+    console.log("hiii");
+  model.Estudiante.findAll({where: {id:id}})
     .then(estudiante=> res.json({
       error : false,
       data : estudiante
@@ -39,7 +39,8 @@ router.get('/iniciarSesion/:id', function(req, res, next) {
   const id = req.params.id;
   global.idEstudiante= id;
   res.json({
-    id:id
+    id:id,
+    sesion:global.idEstudiante
 
   })
 });
