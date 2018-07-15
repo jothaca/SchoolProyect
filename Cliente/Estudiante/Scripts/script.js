@@ -175,14 +175,14 @@ function verDetallesTarea(id_curso){
 function listarTareasGrado(id_curso){
             $.ajax({
     
-              url:   'http://localhost:3000/estudiantes/iniciarSesion'+id_curso,
+              url:   'http://localhost:3000/estudiantes/iniciarSesion/'+id_curso,
               type:  'GET',
       
               success:  function (r)
               {
-                           $.ajax({
+              $.ajax({
     
-              url:   'http://localhost:3000/estudiantes/'+id_curso,
+              url:   'http://localhost:3000/estudiantes/buscar/'+id_curso,
               type:  'GET',
       
               success:  function (r)

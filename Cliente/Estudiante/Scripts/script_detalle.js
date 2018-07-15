@@ -1,7 +1,59 @@
 
+
 $(document).ready(function() {
+
+var id_Estudiante="";
    var id_Tarea="";
+   getEstudiante();
   asignarid_Tarea();
+
+
+
+  $("#btnComentario").click(function() {
+  comentario=document.getElementById("comentario");
+  hacerComentario(comentario.value);
+  comentario.value="";
+  verDetalleTarea();
+});
+
+
+function hacerComentario(comentario)
+{
+if(comentario!=""){
+   datos={};
+
+      datos.comentario=comentario;
+      datos.id_tarea=id_Tarea;
+      datos.id_estudiante=id_Estudiante;
+  
+ $.ajax({
+    
+              url:   'http://localhost:3000/comentarios/crear',
+              type:  'POST',
+              data:datos,
+
+              success:  function (r)
+              {
+                  
+
+              },
+              error: function(e)
+             {
+                    alert('Ocurrio un error en el servidor ..'+e);
+                                console.log(JSON.stringify(e));
+
+                  //materias.attr('disabled', false);
+              }
+          });
+
+
+}
+else {
+  alert("debe escribir un comentario")
+
+}
+}
+
 function asignarid_Tarea(){
   $.ajax({
     
@@ -70,15 +122,16 @@ function asignarid_Tarea(){
               }
 
 
-
-  /*                     $.ajax({
+              function getEstudiante(){
+                      $.ajax({
     
               url:   'http://localhost:3000/estudiantes/getSesion',
               type:  'GET',
       
               success:  function (r)
               {
-                  idEstudiante=r["id"];
+                  console.log("get"+r["id"]);
+                  id_Estudiante=r["id"];
               },
               error: function(e)
              {
@@ -89,9 +142,8 @@ function asignarid_Tarea(){
               }
           });
 
-
-     */ 
-
+}
+      
 
 function cargarComentarios(){
 
